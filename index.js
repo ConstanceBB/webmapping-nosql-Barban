@@ -44,14 +44,20 @@ app.get('/geo-search-results', function(req, res){
    var latitude = parseFloat(req.query.latitude);
    var longitude = parseFloat(req.query.longitude);
    var radius = parseFloat(req.query.Radius);
+   var titre = req.query.titre;
 
-   var filter = {};
+   //var expressionregu = '/'.concat('',titre);
+   //titre = expressionregu.concat('', '/');
+   console.log(titre);
+
+   var filter = {"properties.ins_nom": {$regex : ".*"+titre+".*", $options : "i"}};
    filter.geometry = { "$geoWithin": { "$center": [ [ longitude ,latitude] , radius ] } };
+
 
     mydb.collection('equip').find(filter).toArray(function(err, docs) {
        console.log("Found "+docs.length+" records");
        res.render('geo-search-results', {
-         results: docs, latitude :latitude, longitude:longitude, radius : radius
+         results: docs, latitude :latitude, longitude:longitude, radius : radius, titre: titre
        });
      });
 
@@ -59,10 +65,11 @@ app.get('/geo-search-results', function(req, res){
 
 
 app.get('/geo-search-results-json', function(req, res){
-
+   console.log("coucou ? ");
    var latitude = parseFloat(req.query.latitude);
    var longitude = parseFloat(req.query.longitude);
    var radius = parseFloat(req.query.Radius);
+
 
    var filter = {};
     filter.geometry = { "$geoWithin": { "$center": [ [ longitude ,latitude] , radius ] } };

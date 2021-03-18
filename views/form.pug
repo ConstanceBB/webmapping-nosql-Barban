@@ -5,16 +5,20 @@ html
    body
       form(action = "/geo-search-results", method = "GET" , name=formulaire)
          div
-            label(for = "Latitude") Latitude:
+            label(for = "Latitude") Latitude :
             input(name = "latitude" value = latitude)
          br
          div
-            label(for = "Longitude") Longitude:
+            label(for = "Longitude") Longitude :
             input(name = "longitude" value = longitude)
          br
          div
-            label(for = "Radius") Radius:
+            label(for = "Radius") Radius :
             input(name = "Radius" value = radius)
+         br
+         div
+            label(for = "titre") Titre :
+            input(name = "titre" value = titre)
          br
          button(type = "submit") Rechercher
          button(type="button" id='boutonCentre') Centrer la recherche

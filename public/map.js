@@ -77,9 +77,11 @@ map.on('singleclick', function (evt) {
 });
 
 
-
+/**
+ * Add a drag and drop handler to the map, to change values in form.
+ */
 map.on('moveend', function (evt) {
-   if(document.getElementById("formulaireDiv").children[1][5].checked){
+   if(document.getElementById("formulaireDiv").children[1][6].checked){
      centrageCarte();
    }
 });
@@ -95,7 +97,7 @@ closer.onclick = function () {
 };
 
 
-var boutton = document.getElementById("formulaireDiv").children[1][4];
+var boutton = document.getElementById("formulaireDiv").children[1][5];
 
 function centrageCarte(){
   //Modification des coordonnées du formulaire pour matcher le centre de la carte
