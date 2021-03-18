@@ -1,0 +1,19 @@
+html
+html
+   head
+      title Form Tester
+   body
+      form(action = "/geo-search-results", method = "GET")
+         div
+            label(for = "Latitude") Latitude:
+            input(name = "latitude" value = "48.86")
+         br
+         div
+            label(for = "Longitude") Longitude:
+            input(name = "longitude" value = "2.33")
+         br
+         div
+            label(for = "Radius") Radius:
+            input(name = "Radius" value = "0.01")
+         br
+         button(type = "submit") Rechercher
