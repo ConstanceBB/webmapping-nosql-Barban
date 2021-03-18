@@ -73,6 +73,15 @@ map.on('singleclick', function (evt) {
   var hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
   content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
   overlay.setPosition(coordinate);
+
+});
+
+
+
+map.on('moveend', function (evt) {
+   if(document.getElementById("formulaireDiv").children[1][5].checked){
+     centrageCarte();
+   }
 });
 
 /**
@@ -85,7 +94,8 @@ closer.onclick = function () {
   return false;
 };
 
-var boutton = document.getElementById("formulaireDiv").children[1].lastChild;
+
+var boutton = document.getElementById("formulaireDiv").children[1][4];
 
 function centrageCarte(){
   //Modification des coordonnées du formulaire pour matcher le centre de la carte
@@ -93,7 +103,6 @@ function centrageCarte(){
   document.getElementById("formulaireDiv").children[1][0].value = coord[1];
   document.getElementById("formulaireDiv").children[1][1].value = coord[0];
   //Modification de la valeur du radius selon l'échelle de la centrageCarte
-  console.log(map.getView().getZoom());
   document.getElementById("formulaireDiv").children[1][2].value = 0.095-map.getView().getZoom()*0.005;
 };
 
