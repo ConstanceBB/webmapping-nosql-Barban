@@ -5,6 +5,13 @@ var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 
+//Mise à jour du formulaire avec les valeurs demandées par l'utilisateur
+var str = window.location.search;
+var mySubString = str.split( "=");
+document.getElementById("formulaireDiv").children[1][0].value = parseFloat(mySubString[1].replace( /[^\d\.]*/g, ''));
+document.getElementById("formulaireDiv").children[1][1].value = parseFloat(mySubString[2].replace( /[^\d\.]*/g, ''));
+document.getElementById("formulaireDiv").children[1][2].value = parseFloat(mySubString[3].replace( /[^\d\.]*/g, ''));
+
 /**
  * Create an overlay to anchor the popup to the map.
  */
