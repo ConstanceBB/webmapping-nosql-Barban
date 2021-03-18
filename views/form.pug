@@ -6,14 +6,17 @@ html
       form(action = "/geo-search-results", method = "GET" , name=formulaire)
          div
             label(for = "Latitude") Latitude:
-            input(name = "latitude" value = "48.86")
+            input(name = "latitude" value = latitude)
          br
          div
             label(for = "Longitude") Longitude:
-            input(name = "longitude" value = "2.33")
+            input(name = "longitude" value = longitude)
          br
          div
             label(for = "Radius") Radius:
-            input(name = "Radius" value = "0.01")
+            input(name = "Radius" value = radius)
          br
          button(type = "submit") Rechercher
+         button(type="button" id='boutonCentre') Centrer la recherche
+         input(type='checkbox' id="synchro" checked )
+         label='Synchronisation automatique'

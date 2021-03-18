@@ -8,9 +8,6 @@ var closer = document.getElementById('popup-closer');
 //Mise à jour du formulaire avec les valeurs demandées par l'utilisateur
 var str = window.location.search;
 var mySubString = str.split( "=");
-document.getElementById("formulaireDiv").children[1][0].value = parseFloat(mySubString[1].replace( /[^\d\.]*/g, ''));
-document.getElementById("formulaireDiv").children[1][1].value = parseFloat(mySubString[2].replace( /[^\d\.]*/g, ''));
-document.getElementById("formulaireDiv").children[1][2].value = parseFloat(mySubString[3].replace( /[^\d\.]*/g, ''));
 
 /**
  * Create an overlay to anchor the popup to the map.
@@ -59,7 +56,7 @@ var map = new ol.Map({
    }),
    coucheEquipement],
    view: new ol.View({
-     center: ol.proj.fromLonLat([2.35, 48.841]),
+     center: ol.proj.fromLonLat([parseFloat(mySubString[2].replace( /[^\d\.]*/g, '')), parseFloat(mySubString[1].replace( /[^\d\.]*/g, ''))]),
      zoom: 12,
      maxZoom: 20,
    }),
@@ -87,3 +84,17 @@ closer.onclick = function () {
   closer.blur();
   return false;
 };
+
+var boutton = document.getElementById("formulaireDiv").children[1].lastChild;
+
+function centrageCarte(){
+  //Modification des coordonnées du formulaire pour matcher le centre de la carte
+  var coord = ol.proj.toLonLat(map.getView().getCenter());
+  document.getElementById("formulaireDiv").children[1][0].value = coord[1];
+  document.getElementById("formulaireDiv").children[1][1].value = coord[0];
+  //Modification de la valeur du radius selon l'échelle de la centrageCarte
+  console.log(map.getView().getZoom());
+  document.getElementById("formulaireDiv").children[1][2].value = 0.095-map.getView().getZoom()*0.005;
+};
+
+boutton.onclick = centrageCarte;

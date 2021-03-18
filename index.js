@@ -51,7 +51,7 @@ app.get('/geo-search-results', function(req, res){
     mydb.collection('equip').find(filter).toArray(function(err, docs) {
        console.log("Found "+docs.length+" records");
        res.render('geo-search-results', {
-         results: docs
+         results: docs, latitude :latitude, longitude:longitude, radius : radius
        });
      });
 
