@@ -16,8 +16,11 @@ html
          a(id='popup-closer' class='ol-popup-closer' href ='#' )
          #popup-content
 
+     br
 
-     div
+     include ./form.pug
+
+     div(id='liste')
        each result in results
          div
            h2= result.properties.ins_nom

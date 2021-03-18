@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var mydb;
 var MongoClient = require('mongodb').MongoClient;
 
+
 //To parse URL encoded data
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -44,10 +45,14 @@ app.get('/geo-search-results', function(req, res){
    var longitude = parseFloat(req.query.longitude);
    var radius = parseFloat(req.query.Radius);
 
-   var filter = {};
-    filter.geometry = { "$geoWithin": { "$center": [ [ longitude ,latitude] , radius ] } };
+   //Mise à jour des valeurs du formulaire selon celles demandées précédemment
 
-    console.log("filter", JSON.stringify(filter));
+   //console.log(document.forms["formulaire"].elements["latitude"].value=latitude);
+
+   var filter = {};
+   filter.geometry = { "$geoWithin": { "$center": [ [ longitude ,latitude] , radius ] } };
+
+
 
     mydb.collection('equip').find(filter).toArray(function(err, docs) {
        console.log("Found "+docs.length+" records");
@@ -61,7 +66,6 @@ app.get('/geo-search-results', function(req, res){
 
 
 app.get('/geo-search-results-json', function(req, res){
-   //console.log(req.query); // retourne les infos rentrées par l'utilisateur
 
    var latitude = parseFloat(req.query.latitude);
    var longitude = parseFloat(req.query.longitude);

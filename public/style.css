@@ -2,11 +2,19 @@ html {
   background-color: #156789;
 
 }
+#liste{
+  height: 600px;
+  overflow: scroll;
+}
 
 #map {
    height: 400px;
-   width: 100%;
+   width: 600px;
+   position: absolute;
+   left:50%;
+
 }
+
 
 .ol-popup {
         position: absolute;
